@@ -9,6 +9,7 @@ redisClient.on('error', (err) => {
     console.error('Redis error:', err);
 });
 
+
 function connectRedis() {
     if (!redisClient.isOpen) {
         redisClient.connect()
