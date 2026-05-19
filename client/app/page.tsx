@@ -34,10 +34,10 @@ export default function Home() {
       setFeeds((prev) => [feed, ...prev]);
     };
 
-    socket.on("feed:new", handleNewFeed);
+    socket.on("newFeed", handleNewFeed);
 
     return () => {
-      socket.off("feed:new", handleNewFeed);
+      socket.off("newFeed", handleNewFeed);
     };
 
   }, []);
