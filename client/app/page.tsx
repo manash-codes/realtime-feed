@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 
 import { api } from "@/services/api";
 import { socket } from "@/services/socket";
+import { Feed } from "@/types/feed.types";
+import FeedCard from "@/components/FeedCard";
 
 export default function Home() {
 
-  const [feeds, setFeeds] = useState([]);
+  const [feeds, setFeeds] = useState<Feed[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchFeeds = async () => {
@@ -29,7 +31,7 @@ export default function Home() {
 
     fetchFeeds();
 
-    const handleNewFeed = (feed) => {
+    const handleNewFeed = (feed: Feed) => {
 
       setFeeds((prev) => [feed, ...prev]);
     };
@@ -47,15 +49,14 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <h1>Realtime Coaching Feed</h1>
+    <div className="container mx-auto p-5">
+      <h1 className="text-3xl font-bold mb-5">Realtime Coaching Feed</h1>
 
-      {feeds.map((feed) => (
-        <div key={feed._id}>
-          <h3>{feed.title}</h3>
-          <p>{feed.description}</p>
-        </div>
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {feeds.map((feed) => (
+          <FeedCard key={feed._id} feed={feed} />
+        ))}
+      </div>
     </div>
   );
 }

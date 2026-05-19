@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { api } from "@/services/api";
+import FeedForm from "@/components/FeedForm";
 
 export default function AdminPage() {
 
@@ -33,34 +34,11 @@ export default function AdminPage() {
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <input
-                placeholder="Title"
-                value={title}
-                onChange={(e) =>
-                    setTitle(e.target.value)
-                }
-            />
-
-            <input
-                placeholder="Author"
-                value={author}
-                onChange={(e) =>
-                    setAuthor(e.target.value)
-                }
-            />
-
-            <textarea
-                placeholder="Description"
-                value={content}
-                onChange={(e) =>
-                    setContent(e.target.value)
-                }
-            />
-
-            <button type="submit">
-                Add Feed
-            </button>
-        </form>
+        <div className="container mx-auto p-5">
+            <h1 className="text-3xl font-bold mb-5">
+                Admin Panel
+            </h1>
+            <FeedForm />
+        </div >
     );
 }
